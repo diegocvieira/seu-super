@@ -1,0 +1,295 @@
+.page-user-config, .page-user-orders {
+    .navigation {
+        background-color: #fff;
+
+        ul {
+            li {
+                a {
+                    display: block;
+                    font-size: 16.6px;
+                    color: rgb(50, 50, 50);
+                    border-bottom: 1px solid rgb(240, 240, 240);
+                    padding: 18px 0;
+
+                    &.active {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .page-title {
+        font-size: 25px;
+        color: rgb(50, 50, 50);
+        font-weight: 700;
+        border-bottom: 1px solid rgb(230, 230, 230);
+        padding-bottom: 10px;
+
+        .arrow-back {
+            background-image: url('../images/icon-arrow.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 5px;
+        }
+    }
+}
+
+.page-user-config {
+    .fields-container {
+        padding: 30px 50px 50px 50px;
+        background-color: #fff;
+
+        .btn-submit {
+            font-size: 14.5px;
+            color: #fff;
+            font-weight: 700;
+            background-color: $primary-color;
+            border-radius: 25px;
+            border: 0;
+            cursor: pointer;
+            padding: 13px 20px;
+        }
+
+        .fields {
+            padding: 0 25px;
+            margin-top: 30px;
+
+            .fields-title {
+                font-size: 16.6px;
+                color: $primary-color;
+                font-weight: 700;
+            }
+
+            .group {
+                display: flex;
+                flex-wrap: wrap;
+
+                .field {
+                    padding: 0 15px;
+                    flex: 1 0 100%;
+                    margin-bottom: 20px;
+
+                    .label {
+                        font-size: 14.5px;
+                        color: rgb(50, 50, 50);
+                        font-weight: 700;
+                        padding-left: 15px;
+                    }
+
+                    .control {
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .radio-label {
+                            font-size: 16.6px;
+                            color: rgb(100, 100, 100);
+                            font-weight: 700;
+                            border-radius: 5px;
+                            background-color: rgb(245, 245, 245);
+                            padding: 20px 25px;
+                            text-align: center;
+                            cursor: pointer;
+                            transition: .2s;
+                            flex: 1;
+
+                            &:not(:first-of-type) {
+                                margin-left: 15px;
+                            }
+                        }
+
+                        input[type=radio]:checked + .radio-label {
+                            background-color: rgb(235, 255, 230);
+                            color: $primary-color;
+                        }
+
+                        input[type=text], input[type=email], input[type=password], textarea, select {
+                            border: 1px solid rgb(219, 219, 219);
+                            border-radius: 5px;
+                            width: 100%;
+                            height: 53px;
+                            font-size: 14.5px;
+                            color: #000;
+                            background-color: transparent;
+                            padding-left: 15px;
+                        }
+
+                        textarea {
+                            resize: none;
+                            height: 200px;
+                            padding-top: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.page-user-orders {
+    .fields-container {
+        padding: 30px 50px 50px 50px;
+        background-color: #fff;
+
+        .fields {
+            padding: 0 0 0 25px;
+            margin-top: 30px;
+        }
+
+        .order {
+            border: 1px solid rgb(230, 230, 230);
+            border-radius: 5px;
+            text-align: center;
+
+            a {
+                display: block;
+            }
+
+            .market-image {
+                border: 1px solid rgb(230, 230, 230);
+                border-radius: 50%;
+                width: 118px;
+                height: 118px;
+                object-fit: cover;
+                margin: 20px 0;
+            }
+
+            .market-content {
+                background-color: rgb(245, 245, 245);
+                padding: 13px 0;
+
+                .market-name {
+                    font-size: 14.5px;
+                    color: rgb(50, 50, 50);
+                }
+
+                .order-date {
+                    font-size: 12.5px;
+                    color: rgb(150, 150, 150);
+                }
+            }
+        }
+
+        .market {
+            display: flex;
+            align-items: center;
+
+            .market-name {
+                font-size: 16.6px;
+                color: rgb(50, 50, 50);
+                font-weight: 700;
+            }
+
+            .market-image {
+                border: 1px solid rgb(230, 230, 230);
+                border-radius: 50%;
+                width: 58px;
+                height: 58px;
+                margin-right: 15px;
+            }
+        }
+
+        .btn-repeat-order {
+            font-size: 14.5px;
+            color: #fff;
+            font-weight: 700;
+            background-color: $primary-color;
+            padding: 11px 25px;
+            display: inline-block;
+            border-radius: 25px;
+        }
+
+        .btn-cancel-order {
+            font-size: 14.5px;
+            color: rgba(67, 176, 42, 0.502);
+            display: inline-block;
+            margin-left: 25px;
+        }
+
+        .section {
+            font-size: 14.5px;
+            color: rgb(50, 50, 50);
+            padding: 0;
+            margin-top: 40px;
+
+            h4 {
+
+                font-weight: 700;
+            }
+
+            p span {
+                color: rgb(150, 150, 150);
+            }
+        }
+
+        .products-container {
+            border-radius: 5px;
+            background-color: #ebffe6;
+            min-height: 500px;
+            max-height: 100%;
+            overflow: auto;
+            border-radius: 5px;
+            padding: 10px;
+
+            .products-title {
+                font-size: 16.6px;
+                color: $primary-color;
+                font-weight: 700;
+                margin: 0 0 20px 0;
+                float: left;
+            }
+
+            .product {
+                // padding: 15px;
+                margin-bottom: 20px;
+                // border: 1px solid red;
+                float: left;
+                width: 100%;
+
+                .image {
+                    float: left;
+                    margin: 0 10px 0 0;
+                    // opacity: .2;
+                    object-fit: contain;
+                    border-radius: 10px;
+                    // background-color: rgb(255, 255, 255);
+                    width: 70px;
+                    height: 70px;
+                }
+
+                .name {
+                    font-size: 12.5px;
+                    color: rgb(100, 100, 100);
+                    float: left;
+                    width: calc(100% - 136px);
+                    margin: 0 10px 0 0;
+                }
+
+                .price {
+                    font-size: 14.5px;
+                    color: #000;
+                    font-weight: 700;
+                    float: left;
+                    margin: 5px 0;
+                    width: calc(100% - 80px);
+                }
+
+                .product-qtd {
+                    background-color: $primary-color;
+                    width: 46px;
+                    height: 22px;
+                    font-size: 13.7px;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 25px;
+                    line-height: 22px;
+                    float: left;
+                }
+            }
+        }
+    }
+}

@@ -11,5 +11,58 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.sass('resources/sass/app.scss', 'public/css')
+    .babel([
+        'resources/js/geral.js',
+        'resources/js/cart.js'
+    ], 'public/js/app.js')
+    .copyDirectory('resources/images', 'public/images')
+    .copyDirectory('resources/fonts', 'public/fonts');
+
+if (mix.inProduction()) {
+    mix.version([
+        'public/css/app.css',
+        'public/js/app.js'
+    ]);
+}
+
+//     mix.sass('resources/sass/global.scss', 'public/css')
+//     .sass('resources/sass/global-store.scss', 'public/css')
+//     .sass('resources/sass/mobile/global-mobile.scss', 'public/css')
+//     .sass('resources/sass/mobile/global-store-mobile.scss', 'public/css')
+//     .babel([
+//         'resources/js/mobile/geral.js',
+//         'resources/js/mobile/show-product.js',
+//         'resources/js/mobile/bag.js'
+//     ], 'public/js/global-mobile.js')
+//     .babel([
+//         'resources/js/mobile/store-config.js',
+//         'resources/js/mobile/admin-products.js',
+//         'resources/js/mobile/create-edit-product.js'
+//     ], 'public/js/global-store-mobile.js')
+//     .babel([
+//         'resources/js/geral.js',
+//         'resources/js/show-product.js',
+//         'resources/js/bag.js'
+//     ], 'public/js/global.js')
+//     .babel([
+//         'resources/js/store-config.js',
+//         'resources/js/product-images.js',
+//         'resources/js/product-edit.js'
+//     ], 'public/js/global-store.js')
+//     .copyDirectory('resources/images', 'public/images')
+//     .copyDirectory('resources/offline-developer', 'public/offline-developer')
+//     .copyDirectory('resources/fonts', 'public/fonts');
+
+// if(mix.inProduction()) {
+//     mix.version([
+//         'public/css/global.css',
+//         'public/css/global-store.css',
+//         'public/css/global-mobile.css',
+//         'public/css/global-store-mobile.css',
+//         'public/js/global.js',
+//         'public/js/global-store.js',
+//         'public/js/global-mobile.js',
+//         'public/js/global-store-mobile.js'
+//     ]);
+// }

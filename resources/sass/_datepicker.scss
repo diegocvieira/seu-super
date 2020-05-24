@@ -1,0 +1,86 @@
+.ui-widget.ui-widget-content {
+    padding: 10px;
+    width: 330px;
+}
+
+.ui-datepicker {
+    table {
+        margin: 0;
+
+        th {
+            font-weight: normal;
+            padding-bottom: 0;
+        }
+
+        td {
+            padding: 3px;
+        }
+
+        .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+            border: 1px solid #c5c5c5;
+            color: #454545;
+        }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+            text-align: center;
+            background: #fff;
+            border-radius: 5px;
+            padding: 7.5px 10px;
+            transition: .2s;
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+
+        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+            border: 1px solid $primary-color;
+            background: $primary-color;
+            color: #fff;
+            text-align: center;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    .ui-widget-header {
+        background: #fff;
+        border: 0;
+
+        .ui-datepicker-month, .ui-datepicker-year {
+            color: $primary-color;
+            text-transform: uppercase;
+        }
+
+        .ui-datepicker-prev, .ui-datepicker-next {
+            border-radius: 5px;
+            background-color: rgb(230, 230, 230);
+            width: 30px;
+            height: 30px;
+            background-position: center;
+            background-size: 8px;
+            background-repeat: no-repeat;
+            top: 2px;
+
+            &.ui-datepicker-prev {
+                background-image: url('../images/icon-arrow2.png');
+                left: 2px;
+            }
+
+            &.ui-datepicker-next {
+                background-image: url('../images/icon-arrow3.png');
+                right: 2px;
+            }
+
+            &:hover {
+                border: 0;
+            }
+
+            span {
+                display: none;
+            }
+        }
+    }
+}

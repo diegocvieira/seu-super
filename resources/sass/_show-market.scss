@@ -1,0 +1,239 @@
+.page-show-market {
+    .market-header {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        padding: 30px 0 20px 0;
+
+        .market-logo {
+            border-radius: 50%;
+            background-color: #fff;
+            width: 140px;
+            height: 140px;
+        }
+
+        .market-name {
+            font-size: 25px;
+            font-family: 'KeepCalm';
+            color: #fff;
+            flex: 0 1 100%;
+            margin: 15px 0 0 0;
+        }
+
+        .market-advice {
+            font-size: 12.5px;
+            color: #fff;
+            margin-bottom: 20px;
+            flex: 0 1 100%;
+        }
+
+        .form-search {
+            input {
+                border-bottom-left-radius: 5px;
+                border-top-left-radius: 5px;
+                background-color: #fff;
+                width: 600px;
+                height: 36px;
+                font-size: 13.7px;
+                color: #000;
+                float: left;
+                border: none;
+                padding-left: 15px;
+            }
+
+            button {
+                background-color: rgb(240, 240, 240);
+                width: 50px;
+                height: 36px;
+                border-bottom-right-radius: 5px;
+                border-top-right-radius: 5px;
+                float: left;
+                border: none;
+                cursor: pointer;
+                background-image: url('../images/icon-lupa.png');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 25px;
+            }
+        }
+    }
+
+    .know {
+        margin-top: 20px;
+        margin-bottom: 40px !important;
+
+        .item {
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+            img {
+                width: 56px;
+                margin-right: 20px;
+            }
+
+            .text {
+                font-size: 16.6px;
+                color: rgb(62, 60, 71);
+            }
+        }
+    }
+
+    .filters {
+        padding: 0 20px;
+
+        .departments {
+            .department {
+                margin-bottom: 20px;
+
+                .department-header {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .department-close {
+                    width: 20px;
+                    height: 20px;
+                    background-image: url('../images/icon-arrow.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    display: inline-block;
+                    background-color: transparent;
+                    border: none;
+                    margin-right: 15px;
+                    cursor: pointer;
+                }
+
+                .department-image {
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    object-fit: contain;
+                    background-color: #fff;
+                    padding: 5px;
+                    margin-right: 15px;
+                }
+
+                .department-name {
+                    font-size: 14.5px;
+                    color: rgb(50, 50, 50);
+                }
+
+                .category-name, .subcategory-name {
+                    font-size: 13.7px;
+                    color: rgb(100, 100, 100);
+                    cursor: pointer;
+
+                    &::before {
+                        content: '';
+                        display: inline-block;
+                        border: 1px solid rgb(100, 100, 100);
+                        border-radius: 4px;
+                        width: 16px;
+                        height: 16px;
+                        vertical-align: sub;
+                        margin-right: 5px;
+                    }
+
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+
+                .category.active .category-name::before, .subcategory.active .subcategory-name::before {
+                    background-color: $primary-color;
+                    border-color: $primary-color;
+                    background-image: url('../images/icon-check.png');
+                    background-repeat: no-repeat;
+                    background-size: 12px;
+                    background-position: center;
+                }
+
+                .categories {
+                    margin-top: 20px;
+                }
+
+                .subcategories {
+                    padding-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+.modal-payment .modal-card {
+    width: 700px;
+
+    .modal-card-body {
+        .payment-type {
+            display: block;
+            font-size: 16.6px;
+            color: rgb(50, 50, 50);
+            font-weight: 700;
+            margin-top: 15px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        .payment-name {
+            font-size: 14.5px;
+            color: rgb(100, 100, 100);
+            width: 33.33%;
+            display: inline-block;
+            margin-right: -4px;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                border-radius: 50%;
+                background-color: #000;
+                width: 6px;
+                height: 6px;
+                margin-right: 10px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.modal-freight .modal-card {
+    width: 1200px;
+
+    .modal-card-body {
+        .freight {
+            width: 33.33%;
+            display: inline-block;
+            margin-right: -4px;
+
+            &:nth-child(3n) .freight-price {
+                padding-right: 0;
+            }
+
+            &:nth-child(3n), &:nth-child(3n+2) {
+                .freight-name {
+                    padding-left: 30px;
+                }
+            }
+
+            .freight-name {
+                font-size: 14.5px;
+                color: rgb(50, 50, 50);
+            }
+
+            .freight-price {
+                float: right;
+                padding-right: 30px;
+                font-size: 14.5px;
+                color: rgb(50, 50, 50);
+                font-weight: 700;
+            }
+        }
+    }
+}

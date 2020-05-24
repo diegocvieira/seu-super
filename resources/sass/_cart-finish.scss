@@ -1,0 +1,270 @@
+.page-cart-finish {
+    .finish {
+        background-color: #fff;
+        padding: 0 20px;
+
+        .btn-submit {
+            font-size: 18.7px;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 5px;
+            background-color: $primary-color;
+            width: 100%;
+            height: 50px;
+            border: 0;
+            cursor: pointer;
+
+            &:disabled {
+                background-color: rgb(189, 189, 189);
+            }
+        }
+
+        .section {
+            padding: 20px 0;
+
+            &.line {
+                border-top: 1px solid rgb(219, 219, 219);
+            }
+
+            &.price {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                font-size: 14.5px;
+                color: rgb(50, 50, 50);
+
+                &.total {
+                    font-weight: 700;
+                }
+
+                span {
+                    flex: 50%;
+                    padding: 5px 0;
+
+                    &:nth-child(even) {
+                        text-align: right;
+                    }
+                }
+            }
+
+            .market {
+                display: flex;
+                align-items: center;
+
+                .market-image {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+
+                .market-name {
+                    font-size: 16.6px;
+                    color: rgb(50, 50, 50);
+                }
+            }
+
+            .contact {
+                font-size: 12.5px;
+                color: rgb(150, 150, 150);
+                margin-top: 20px;
+
+                span {
+                    font-size: 14.5px;
+                    color: rgb(50, 50, 50);
+                    display: block;
+                    font-weight: 700;
+                }
+
+                a {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    .data {
+        background-color: #fff;
+
+        .data-header {
+            padding: 25px 50px;
+
+            .data-title {
+                font-size: 18.7px;
+                color: rgb(66, 66, 66);
+                font-weight: 700;
+            }
+
+            .data-subtitle {
+                font-size: 13.7px;
+                color: rgb(150, 150, 150);
+            }
+        }
+
+        .section {
+            border-top: 1px solid rgb(240, 240, 240);
+            padding: 0;
+
+            &.section-validate .header-section {
+                &::before {
+                    filter: none;
+                }
+
+                .content .section-title {
+                    font-weight: 700;
+                    color: rgb(100, 100, 100);
+                }
+            }
+
+            &.section-open .header-section::after {
+                transform: rotate(180deg);
+            }
+
+            &.personal .header-section::before {
+                background-image: url('../images/icon-profile4.png');
+            }
+
+            &.address .header-section::before {
+                background-image: url('../images/icon-pin.png');
+            }
+
+            &.delivery-date .header-section::before {
+                background-image: url('../images/icon-calendar.png');
+            }
+
+            &.instructions .header-section::before {
+                background-image: url('../images/icon-message3.png');
+            }
+
+            &.payment .header-section::before {
+                background-image: url('../images/icon-card2.png');
+            }
+
+            .header-section {
+                padding: 30px 50px;
+                cursor: pointer;
+                display: flex;
+
+                &::before {
+                    content: '';
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    vertical-align: sub;
+                    margin-right: 20px;
+                    filter: brightness(170%);
+                    align-self: center;
+                }
+
+                &::after {
+                    content: '';
+                    background-image: url('../images/icon-arrow4.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 15px;
+                    height: 15px;
+                    transition: .2s;
+                }
+
+                .content {
+                    flex: 1;
+
+                    .section-title {
+                        font-size: 16.6px;
+                        margin-bottom: 0;
+                        color: rgb(150, 150, 150);
+                        font-weight: normal;
+                    }
+
+                    .preview {
+                        font-size: 12.5px;
+                        color: rgb(150, 150, 150);
+                    }
+                }
+            }
+
+            .fields-container {
+                padding: 0 25px 25px 25px;
+                display: none;
+
+                .fields {
+                    &:not(:first-child) {
+                        margin-top: 20px;
+                    }
+
+                    .fields-title {
+                        font-size: 16.6px;
+                        color: $primary-color;
+                        font-weight: 700;
+                    }
+
+                    .group {
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        .field {
+                            padding: 0 15px;
+                            flex: 1 0 100%;
+
+                            .label {
+                                font-size: 14.5px;
+                                color: rgb(50, 50, 50);
+                                font-weight: 700;
+                                padding-left: 15px;
+                                margin-top: 20px;
+                            }
+
+                            .control {
+                                display: flex;
+                                flex-wrap: wrap;
+
+                                .radio-label {
+                                    font-size: 16.6px;
+                                    color: rgb(100, 100, 100);
+                                    font-weight: 700;
+                                    border-radius: 5px;
+                                    background-color: rgb(245, 245, 245);
+                                    padding: 20px 25px;
+                                    text-align: center;
+                                    cursor: pointer;
+                                    transition: .2s;
+                                    flex: 1;
+
+                                    &:not(:first-of-type) {
+                                        margin-left: 15px;
+                                    }
+                                }
+
+                                input[type=radio]:checked + .radio-label {
+                                    background-color: rgb(235, 255, 230);
+                                    color: $primary-color;
+                                }
+
+                                input[type=text], textarea, select {
+                                    border: 1px solid rgb(219, 219, 219);
+                                    border-radius: 5px;
+                                    width: 100%;
+                                    height: 53px;
+                                    font-size: 14.5px;
+                                    color: #000;
+                                    background-color: transparent;
+                                    padding-left: 15px;
+                                }
+
+                                textarea {
+                                    resize: none;
+                                    height: 200px;
+                                    padding-top: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

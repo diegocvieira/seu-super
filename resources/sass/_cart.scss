@@ -1,0 +1,191 @@
+.cart {
+    border-radius: 5px;
+    background-color: #ebffe6;
+    min-height: 500px;
+    max-height: 100%;
+    overflow: auto;
+    border-radius: 5px;
+    padding: 10px;
+
+    .cart-title {
+        font-size: 16.6px;
+        color: $primary-color;
+        font-weight: 700;
+        margin: 0;
+        float: left;
+    }
+
+    .cart-clear {
+        font-size: 12.5px;
+        color: $primary-color;
+        background-color: transparent;
+        border: none;
+        float: right;
+        cursor: pointer;
+        margin-top: 3px;
+    }
+
+    .cart-finish {
+        float: left;
+        width: 100%;
+        margin-bottom: 30px;
+
+        .cart-button-finish {
+            font-size: 16.5px;
+            color: #fff;
+            background-color: $primary-color;
+            width: calc(100% - 130px);
+            height: 40px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            border-bottom-left-radius: 25px;
+            border-top-left-radius: 25px;
+            font-weight: 700;
+        }
+
+        .cart-total {
+            font-size: 16.6px;
+            color: #fff;
+            font-weight: 700;
+            background-color: rgb(46, 152, 21);
+            width: 130px;
+            height: 40px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            border-bottom-right-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+    }
+
+    .empty-cart {
+        float: left;
+        width: 100%;
+        text-align: center;
+        margin-top: 160px;
+
+        .icon-list {
+            width: 68px;
+            height: 87px;
+        }
+
+        .text {
+            font-size: 13.7px;
+            color: $primary-color;
+
+            span {
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                text-align: center;
+                border: 1px solid $primary-color;
+                display: inline-block;
+                font-weight: 700;
+                margin: 0 4px;
+                color: $primary-color;
+                vertical-align: top;
+                line-height: 22px;
+            }
+        }
+    }
+
+    .list-products {
+        float: left;
+        width: 100%;
+        margin-top: 30px;
+
+        .product {
+            // padding: 15px;
+            margin-bottom: 20px;
+            // border: 1px solid red;
+            float: left;
+            width: 100%;
+
+            .image {
+                float: left;
+                margin: 0 10px 0 0;
+                opacity: .2;
+                object-fit: contain;
+                border-radius: 10px;
+                // background-color: rgb(255, 255, 255);
+                width: 70px;
+                height: 70px;
+            }
+
+            .name {
+                font-size: 12.5px;
+                color: rgb(100, 100, 100);
+                float: left;
+                width: calc(100% - 226px);
+                margin: 0 10px 0 0;
+            }
+
+            .price {
+                font-size: 14.5px;
+                color: #000;
+                font-weight: 700;
+                float: left;
+                margin: 5px 0;
+                width: calc(100% - 80px);
+            }
+
+            .open-description {
+                width: 14px;
+                height: 14px;
+                float: left;
+                margin: 5px 0 0 20px;
+                background-image: url('../images/icon-message.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                border: none;
+                cursor: pointer;
+            }
+
+            .add-product-description {
+                float: left;
+                width: 100%;
+                text-align: right;
+                display: none;
+
+                textarea {
+                    float: left;
+                    width: 100%;
+                    border: 1px solid rgb(219, 219, 219);
+                    border-radius: 5px;
+                    background-color: #fff;
+                    height: 118px;
+                    font-size: 13.7px;
+                    padding: 15px 0 0 10px;
+                    resize: none;
+                    margin: 10px 0;
+                }
+
+                button {
+                    border: none;
+                    display: inline-block;
+                    background-color: transparent;
+                    vertical-align: middle;
+                    cursor: pointer;
+
+                    &.remove {
+                        font-size: 16.6px;
+                        color: $primary-color;
+                        margin-right: 20px;
+                    }
+
+                    &.save {
+                        font-size: 16.6px;
+                        color: #fff;
+                        font-weight: 700;
+                        background-color: $primary-color;
+                        width: 100px;
+                        height: 40px;
+                        border-radius: 25px;
+                    }
+                }
+            }
+        }
+    }
+}

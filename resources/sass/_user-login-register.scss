@@ -1,0 +1,76 @@
+.page-user-register, .page-user-login {
+    form {
+        border: 1px solid rgb(240, 240, 240);
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 10px 17.321px 16px 4px rgba(100, 100, 100, 0.078);
+        padding: 60px 70px;
+        display: block;
+        text-align: center;
+
+        .title {
+            font-size: 29px;
+            font-family: 'KeepCalm';
+            color: rgb(66, 66, 66);
+        }
+
+        .subtitle {
+            font-size: 14.5px;
+            color: rgb(100, 100, 100);
+            margin-bottom: 40px;
+        }
+
+        input {
+            border-radius: 5px;
+            background-color: rgb(245, 245, 245);
+            width: 100%;
+            height: 55px;
+            display: block;
+            border: none;
+            padding-left: 15px;
+            font-size: 14.5px;
+            margin-top: 10px;
+        }
+
+        .half {
+            width: calc(50% - 5px);
+            display: inline-block;
+            margin-right: -4px;
+        }
+
+        .half#password {
+            margin-right: 6px;
+        }
+
+        button {
+            font-size: 14.5px;
+            color: #fff;
+            font-weight: 700;
+            background-color: $primary-color;
+            display: block;
+            width: 100%;
+            height: 45px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .terms {
+            font-size: 12.5px;
+            color: rgb(150, 150, 150);
+            display: block;
+        }
+
+        a {
+            color: #7ab8ec;
+        }
+
+        .text-bottom {
+            display: block;
+            margin-top: 20px;
+            font-size: 14.5px;
+            color: rgb(150, 150, 150);
+        }
+    }
+}
