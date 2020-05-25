@@ -46,6 +46,11 @@ class Market extends Model
 
                 foreach ($cartMarket['products'] as $key => $cartProduct) {
                     $product = Product::where('id', $cartProduct['productId'])->first();
+
+                    if (!$product) {
+                        continue;
+                    }
+
                     $cartProducts['products'][$key] = $product;
                     // $cartProducts['products'][$key]['image_id'] = $product->images->first()->id;
                     $cartProducts['products'][$key]['qtd'] = $cartProduct['qtd'];
