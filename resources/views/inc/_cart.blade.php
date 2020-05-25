@@ -19,7 +19,7 @@
     </div>
 
     <div class="list-products">
-        @if ($cartProducts)
+        @if ($cartProducts && $cartProducts['products'])
             @foreach ($cartProducts['products'] as $product)
                 <div class="product" data-productId="{{ $product->id }}" data-productPrice="{{ $product->price }}">
                     <a href="{{ route('product-show', [$market->slug, $product->slug]) }}" target="_blank">
