@@ -58,6 +58,10 @@ class Market extends Model
                     $cartProducts['total'] += $product->price * $cartProduct['qtd'];
                 }
 
+                if (empty($cartProducts['products'])) {
+                    return false;
+                }
+
                 return $cartProducts;
             }
         }
