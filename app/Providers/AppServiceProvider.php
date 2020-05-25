@@ -23,6 +23,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (!app()->environment('local')) {
+            \URL::forceScheme('https');
+
+            \Illuminate\Pagination\AbstractPaginator::currentPathResolver(function () {
+                return app('url')->current();
+            });
+        }
     }
 }
