@@ -6,7 +6,7 @@
 
     <h2 class="cart-title">LISTA DE COMPRAS</h2>
 
-    <button type="button" data-route="{{ route('cart-clear', $market->id) }}" class="cart-clear {{ $cartProducts ? 'is-hidden' : '' }}">Limpar lista</button>
+    <button type="button" data-route="{{ route('cart-clear', $market->id) }}" class="cart-clear {{ $cartProducts ? '' : 'is-hidden' }}">Limpar lista</button>
 
     <div class="empty-cart {{ $cartProducts ? 'is-hidden' : '' }}">
         <img src="{{ asset('images/icon-list.png') }}" alt="Lista vazia" class="icon-list">

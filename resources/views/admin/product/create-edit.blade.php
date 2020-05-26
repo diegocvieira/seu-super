@@ -4,10 +4,10 @@
     <div class="page">
         <div class="container">
             @if (isset($product))
-            <form method="POST" action="{{ route('product-update', $product->slug) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
                 @method('PUT')
             @else
-            <form method="POST" action="{{ route('product-store', $marketSlug) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('product-store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
 
@@ -59,6 +59,19 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
+
+                <div class="field">
+                    <label for="images" class="label">Imagens</label>
+                    <div class="control">
+                        <input type="file" name="images[]" id="images" multiple />
+                    </div>
+                </div>
+
+                <div class="images">
+                    @foreach ($product->images as $image)
+                        <img src="{{ asset('storage/uploads/products/' . $image->image) }}" alt="{{ $product->name }}" style="width: 200px;" />
+                    @endforeach
                 </div>
 
                 <div class="control">

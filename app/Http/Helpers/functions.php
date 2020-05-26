@@ -1,9 +1,9 @@
 <?php
 
-function _saveImageFolder($image, $folderName)
+function _saveImageFolder($image, $folderName, $imageName = null)
 {
     $date = date('FY');
-    $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+    $imageName = $imageName ?? uniqid() . '.' . $image->getClientOriginalExtension();
     $folderPath = 'uploads/' . $folderName . '/' . $date;
 
     $image->storeAs($folderPath, $imageName, 'public');

@@ -47,11 +47,10 @@ class MarketController extends Controller
         }
     }
 
-    public function edit($slug)
+    public function edit($id)
     {
         $market = Market::with('payments', 'freights')
-            ->where('slug', $slug)
-            ->firstOrFail();
+            ->findOrFail($id);
 
         $market_payments = [];
         foreach ($market->payments as $payment) {
@@ -61,10 +60,9 @@ class MarketController extends Controller
         return view('admin.market.create-edit', compact('market', 'market_payments'));
     }
 
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $market = Market::where('slug', $slug)
-            ->firstOrFail();
+        $market = Market::findOrFail($id);
 
         $market->update([
             'name' => $request->name,

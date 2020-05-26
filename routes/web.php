@@ -95,15 +95,16 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('cadastro', 'Admin\MarketController@create')->name('market-create');
             Route::post('cadastro', 'Admin\MarketController@store')->name('market-store');
 
-            Route::group(['prefix' => 'mercado/{slug}'], function () {
-                Route::get('editar', 'Admin\MarketController@edit')->name('market-edit');
-                Route::put('editar', 'Admin\MarketController@update')->name('market-update');
+            Route::get('editar/{id}', 'Admin\MarketController@edit')->name('market-edit');
+            Route::put('editar/{id}', 'Admin\MarketController@update')->name('market-update');
+        });
 
-                // Route::get('{id}/produtos', 'Admin\ProductController@index')->name('market-products');
-                Route::get('produtos/cadastro', 'Admin\ProductController@create')->name('product-create');
-                Route::post('produtos/cadastro', 'Admin\ProductController@store')->name('product-store');
+        Route::group(['prefix' => 'produtos'], function () {
+            Route::get('cadastro', 'Admin\ProductController@create')->name('product-create');
+            Route::post('cadastro', 'Admin\ProductController@store')->name('product-store');
 
-            });
+            Route::get('editar/{id}', 'Admin\ProductController@edit')->name('product.edit');
+            Route::put('editar/{id}', 'Admin\ProductController@update')->name('product.update');
         });
 
         Route::group(['prefix' => 'departamentos'], function () {

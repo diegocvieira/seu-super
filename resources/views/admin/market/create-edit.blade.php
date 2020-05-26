@@ -4,7 +4,7 @@
     <div class="page">
         <div class="container">
             @if (isset($market))
-            <form method="POST" action="{{ route('market-update', $market->slug) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('market-update', $market->id) }}" enctype="multipart/form-data">
                 @method('PUT')
             @else
             <form method="POST" action="{{ route('market-store') }}" enctype="multipart/form-data">

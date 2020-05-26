@@ -14,7 +14,7 @@ use Str;
 
 class ProductController extends Controller
 {
-    public function create($marketSlug)
+    public function create()
     {
         $brands = Brand::orderBy('name', 'ASC')->get();
         $categories = Category::orderBy('name', 'ASC')->get();
@@ -23,7 +23,7 @@ class ProductController extends Controller
         return view('admin.product.create-edit', compact('marketSlug', 'brands', 'categories', 'subcategories'));
     }
 
-    public function store(Request $request, $marketSlug)
+    public function store(Request $request)
     {
         $market = Market::where('slug', $marketSlug)->firstOrFail();
 
@@ -57,6 +57,31 @@ class ProductController extends Controller
 
         foreach ($images as $image) {
             $product->images()->attach($image->id);
+        }
+    }
+
+    public function edit($id)
+    {
+        $product = Product::with('images')
+            ->findOrFail($id);
+
+        $brands = Brand::orderBy('name', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $subcategories = Subcategory::orderBy('name', 'ASC')->get();
+
+        return view('admin.product.create-edit', compact('product', 'brands', 'categories', 'subcategories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        foreach ($request->images as $image) {
+            $img = Image::create([
+                'image' => _saveImageFolder($image, 'products/others', uniqid() . '_' . Str::slug($product->name, '_'))
+            ]);
+
+            $product->images()->attach($img->id);
         }
     }
 }
