@@ -46,12 +46,13 @@
                                     <p><span>Horário da entrega: </span>{{ $order->delivery_hour }}</p>
                                 </div>
 
-                                @if ($order->instructions)
-                                    <div class="section">
-                                        <h4 class="section-subtitle">INSTRUÇÕES</h4>
+                                <div class="section">
+                                    <h4 class="section-subtitle">INSTRUÇÕES</h4>
+                                    <p><span>Se algum produto está faltando: </span>{{ $order->products_missing }}</p>
+                                    @if ($order->instructions)
                                         <p><span>Mensagem: </span>{{ $order->instructions }}</p>
-                                    </div>
-                                @endif
+                                    @endif
+                                </div>
 
                                 <div class="section">
                                     <h4 class="section-subtitle">PAGAMENTO E ENTREGA</h4>

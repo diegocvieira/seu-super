@@ -71,64 +71,93 @@ Route::group(['prefix' => 'usuario'], function () {
     Route::post('login', 'UserController@login')->name('user.login');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'usuario', 'middleware' => 'auth'], function () {
-        Route::get('logout', 'Admin\UserController@logout')->name('user.logout');
+        Route::get('logout', 'UserController@logout')->name('user.logout');
 
-        Route::get('pedidos', 'Admin\UserController@orders')->name('user.orders');
-        Route::get('pedidos/{code}', 'Admin\UserController@orderDetails')->name('user.order.details');
+        Route::get('pedidos', 'UserController@orders')->name('user.orders');
+        Route::get('pedidos/{code}', 'UserController@orderDetails')->name('user.order.details');
 
-        Route::get('dados', 'Admin\UserController@dataIndex')->name('user.data');
-        Route::put('dados', 'Admin\UserController@dataSave')->name('user.data');
+        Route::get('dados', 'UserController@dataIndex')->name('user.data');
+        Route::put('dados', 'UserController@dataSave')->name('user.data');
 
-        Route::get('acesso', 'Admin\UserController@accessIndex')->name('user.access');
-        Route::put('acesso', 'Admin\UserController@accessSave')->name('user.access');
+        Route::get('acesso', 'UserController@accessIndex')->name('user.access');
+        Route::put('acesso', 'UserController@accessSave')->name('user.access');
 
-        Route::get('enderecos', 'Admin\UserController@addressesIndex')->name('user.addresses');
-        Route::put('enderecos', 'Admin\UserController@addressesSave')->name('user.addresses');
+        Route::get('enderecos', 'UserController@addressesIndex')->name('user.addresses');
+        Route::put('enderecos', 'UserController@addressesSave')->name('user.addresses');
 
-        Route::delete('deletar-conta', 'Admin\UserController@deleteAccount')->name('user.delete.account');
+        Route::delete('deletar-conta', 'UserController@deleteAccount')->name('user.delete.account');
     });
 
-    Route::group(['prefix' => 'nosuper'], function () {
-        Route::group(['prefix' => 'mercados'], function () {
-            Route::get('cadastro', 'Admin\MarketController@create')->name('market-create');
-            Route::post('cadastro', 'Admin\MarketController@store')->name('market-store');
+    Route::group(['prefix' => 'nosuper', 'namespace' => 'Nosuper'], function () {
+        Route::get('login', 'NoSuperController@loginIndex')->name('nosuper.login');
+        Route::post('login', 'NoSuperController@login')->name('nosuper.login');
 
-            Route::get('editar/{id}', 'Admin\MarketController@edit')->name('market-edit');
-            Route::put('editar/{id}', 'Admin\MarketController@update')->name('market-update');
-        });
+        Route::group(['middleware' => 'auth:nosuper'], function () {
+            Route::get('index', 'NoSuperController@index')->name('nosuper.index');
 
-        Route::group(['prefix' => 'produtos'], function () {
-            Route::get('cadastro', 'Admin\ProductController@create')->name('product-create');
-            Route::post('cadastro', 'Admin\ProductController@store')->name('product-store');
+            Route::get('logout', 'NoSuperController@logout')->name('nosuper.logout');
 
-            Route::get('editar/{id}', 'Admin\ProductController@edit')->name('product.edit');
-            Route::put('editar/{id}', 'Admin\ProductController@update')->name('product.update');
-        });
+            Route::group(['prefix' => 'mercados'], function () {
+                Route::get('/', 'MarketController@index')->name('nosuper.market.index');
 
-        Route::group(['prefix' => 'departamentos'], function () {
-            Route::get('cadastro', 'Admin\DepartmentController@create')->name('department-create');
-            Route::post('cadastro', 'Admin\DepartmentController@store')->name('department-store');
+                Route::get('cadastro', 'MarketController@create')->name('nosuper.market.create');
+                Route::post('cadastro', 'MarketController@store')->name('nosuper.market.store');
 
-            Route::get('editar/{id}', 'Admin\DepartmentController@edit')->name('department-edit');
-            Route::put('editar/{id}', 'Admin\DepartmentController@update')->name('department-update');
-        });
+                Route::get('editar/{id}', 'MarketController@edit')->name('nosuper.market.edit');
+                Route::put('editar/{id}', 'MarketController@update')->name('nosuper.market.update');
 
-        Route::group(['prefix' => 'categorias'], function () {
-            Route::get('cadastro', 'Admin\CategoryController@create')->name('category-create');
-            Route::post('cadastro', 'Admin\CategoryController@store')->name('category-store');
+                Route::get('deletar/{id}', 'MarketController@delete')->name('nosuper.market.delete');
+            });
 
-            Route::get('editar/{id}', 'Admin\CategoryController@edit')->name('category-edit');
-            Route::put('editar/{id}', 'Admin\CategoryController@update')->name('category-update');
-        });
+            Route::group(['prefix' => 'produtos'], function () {
+                Route::get('/', 'ProductController@index')->name('nosuper.product.index');
 
-        Route::group(['prefix' => 'subcategorias'], function () {
-            Route::get('cadastro', 'Admin\SubcategoryController@create')->name('subcategory-create');
-            Route::post('cadastro', 'Admin\SubcategoryController@store')->name('subcategory-store');
+                Route::get('cadastro', 'ProductController@create')->name('nosuper.product.create');
+                Route::post('cadastro', 'ProductController@store')->name('nosuper.product.store');
 
-            Route::get('editar/{id}', 'Admin\SubcategoryController@edit')->name('subcategory-edit');
-            Route::put('editar/{id}', 'Admin\SubcategoryController@update')->name('subcategory-update');
+                Route::get('editar/{id}', 'ProductController@edit')->name('nosuper.product.edit');
+                Route::put('editar/{id}', 'ProductController@update')->name('nosuper.product.update');
+
+                Route::get('deletar/{id}', 'ProductController@delete')->name('nosuper.product.delete');
+            });
+
+            Route::group(['prefix' => 'departamentos'], function () {
+                Route::get('/', 'DepartmentController@index')->name('nosuper.department.index');
+
+                Route::get('cadastro', 'DepartmentController@create')->name('nosuper.department.create');
+                Route::post('cadastro', 'DepartmentController@store')->name('nosuper.department.store');
+
+                Route::get('editar/{id}', 'DepartmentController@edit')->name('nosuper.department.edit');
+                Route::put('editar/{id}', 'DepartmentController@update')->name('nosuper.department.update');
+
+                Route::get('deletar/{id}', 'DepartmentController@delete')->name('nosuper.department.delete');
+            });
+
+            Route::group(['prefix' => 'categorias'], function () {
+                Route::get('/', 'CategoryController@index')->name('nosuper.category.index');
+
+                Route::get('cadastro', 'CategoryController@create')->name('nosuper.category.create');
+                Route::post('cadastro', 'CategoryController@store')->name('nosuper.category.store');
+
+                Route::get('editar/{id}', 'CategoryController@edit')->name('nosuper.category.edit');
+                Route::put('editar/{id}', 'CategoryController@update')->name('nosuper.category.update');
+
+                Route::get('deletar/{id}', 'CategoryController@delete')->name('nosuper.category.delete');
+            });
+
+            Route::group(['prefix' => 'subcategorias'], function () {
+                Route::get('/', 'SubcategoryController@index')->name('nosuper.subcategory.index');
+
+                Route::get('cadastro', 'SubcategoryController@create')->name('nosuper.subcategory.create');
+                Route::post('cadastro', 'SubcategoryController@store')->name('nosuper.subcategory.store');
+
+                Route::get('editar/{id}', 'SubcategoryController@edit')->name('nosuper.subcategory.edit');
+                Route::put('editar/{id}', 'SubcategoryController@update')->name('nosuper.subcategory.update');
+
+                Route::get('deletar/{id}', 'SubcategoryController@delete')->name('nosuper.subcategory.delete');
+            });
         });
     });
 });

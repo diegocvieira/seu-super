@@ -81,6 +81,7 @@ class OrderController extends Controller
                 'instructions' => $request->instructions,
                 'delivery_date' => _formatDateToDB($request->delivery_date),
                 'delivery_hour' => $request->delivery_hour,
+                'products_missing' => $request->products_missing,
                 'cep' => _removeNonNumericCharacters($user->addresses()->first()->cep),
                 'district' => $user->addresses()->first()->district->name,
                 'street' => $user->addresses()->first()->street,
@@ -91,7 +92,7 @@ class OrderController extends Controller
             foreach ($cartProducts['products'] as $product) {
                 $order->products()->create([
                     'product_id' => $product->id,
-                    'image_id' => $product->image_id,
+                    'image_id' => $product->images->first() ? $product->images->first()->id : null,
                     'name' => $product->name,
                     'price' => $product->price,
                     'quantity' => $product->qtd,

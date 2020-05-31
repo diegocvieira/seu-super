@@ -110,66 +110,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal modal-payment">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <div class="modal-card-head">
-                    <img src="{{ asset('images/icon-card.png') }}" alt="Formas de pagamento" class="modal-icon">
-                    <h2 class="modal-title">Formas de pagamento</h2>
-                    <h3 class="modal-subtitle">{{ $market->name }}</h3>
-                </div>
-
-                <div class="modal-card-body">
-                    @foreach ($market->payments as $payment)
-                        @if (isset($type) && $type != $payment->type)
-                            <span class="payment-type">
-                                @if ($payment->type == 2)
-                                    Cartão de débito
-                                @elseif ($payment->type == 3)
-                                    Cartão de crédito
-                                @endif
-                            </span>
-                        @endif
-                        @php $type = $payment->type; @endphp
-
-                        <span class="{{ $payment->type == 1 ? 'payment-type' : 'payment-name' }}">{{ $payment->name }}</span>
-                    @endforeach
-                </div>
-
-                <div class="modal-card-foot">
-                    <p class="text">Você realizará o pagamento somente ao receber suas compras.</p>
-                </div>
-            </div>
-
-            <button class="modal-close is-large" aria-label="close"></button>
-        </div>
-
-        <div class="modal modal-freight">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <div class="modal-card-head">
-                    <img src="{{ asset('images/icon-truck.png') }}" alt="Valores da entrega" class="modal-icon">
-                    <h2 class="modal-title">Valores da entrega</h2>
-                    <h3 class="modal-subtitle">{{ $market->name }}</h3>
-                </div>
-
-                <div class="modal-card-body">
-                    @foreach ($market->freights as $freight)
-                        <div class="freight">
-                            <span class="freight-name">{{ $freight->name }}</span>
-                            <span class="freight-price">R$ {{ _formatDolarToReal($freight->pivot->price) }}</span>
-                        </div>
-                    @endforeach
-                </div>
-
-                <div class="modal-card-foot">
-                    <p class="text">Além do valor da entrega também é cobrado uma taxa de separação dos produtos no valor de R5,00 por pedido.</p>
-                </div>
-            </div>
-
-            <button class="modal-close is-large" aria-label="close"></button>
-        </div>
     </div>
 
     @include('inc._footer')

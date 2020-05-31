@@ -15,4 +15,9 @@ class Subcategory extends Model
     protected $dates = [
         'created_at', 'updated_at'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category', 'category_id', 'id');
+    }
 }

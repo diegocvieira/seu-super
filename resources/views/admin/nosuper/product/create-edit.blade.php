@@ -1,15 +1,32 @@
 @extends('app')
 
 @section('content')
+    @include('inc._header')
+
     <div class="page">
         <div class="container">
+            <h1 class="title is-3">{{ $market->name }}</h1>
+
             @if (isset($product))
-            <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('nosuper.product.update', $product->id) }}" enctype="multipart/form-data">
                 @method('PUT')
             @else
-            <form method="POST" action="{{ route('product-store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('nosuper.product.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
+
+                <input type="hidden" name="market_id" value="{{ $market->id }}" />
+
+                <div class="field">
+                    <label for="name" class="label">Status</label>
+                    <div class="control select">
+                        <select name="status" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="1" @if (isset($product) && $product->status == 1) selected @endif>Ativado</option>
+                            <option value="0" @if (isset($product) && $product->status == 0) selected @endif>Desativado</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="field">
                     <label for="name" class="label">Nome</label>
@@ -21,7 +38,7 @@
                 <div class="field">
                     <label for="price" class="label">Preço</label>
                     <div class="control">
-                        <input type="text" name="price" value="{{ isset($product) ? $product->price : null }}" id="price" class="input" required />
+                        <input type="text" name="price" value="{{ isset($product) ? $product->price : null }}" id="price" class="input mask-money" required />
                     </div>
                 </div>
 
@@ -40,7 +57,7 @@
                 <div class="field">
                     <label for="category" class="label">Categoria</label>
                     <div class="control select">
-                        <select name="category">
+                        <select name="category" required>
                             <option value="" disabled selected>Selecione</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" @if (isset($product) && $product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
@@ -68,11 +85,13 @@
                     </div>
                 </div>
 
-                <div class="images">
-                    @foreach ($product->images as $image)
-                        <img src="{{ asset('storage/uploads/products/' . $image->image) }}" alt="{{ $product->name }}" style="width: 200px;" />
-                    @endforeach
-                </div>
+                @if (isset($product))
+                    <div class="images">
+                        @foreach ($product->images as $image)
+                            <img src="{{ asset('storage/uploads/products/' . $image->image) }}" alt="{{ $product->name }}" style="width: 200px;" />
+                        @endforeach
+                    </div>
+                @endif
 
                 <div class="control">
                     <button type="submit" class="button is-link">ENVIAR</button>
@@ -80,4 +99,6 @@
             </form>
         </div>
     </div>
+
+    @include('inc._footer')
 @endsection

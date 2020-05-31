@@ -123,17 +123,18 @@ $(function() {
 
     // Save input message in product cart
     $(document).on('click', '.add-product-description .save, .add-product-description .remove', function() {
-        const productId = $(this).parents('.product').attr('data-productId'),
+        const btn = $(this),
+            btnSave = btn.hasClass('save') ? true : false,
+            productId = btn.parents('.product').attr('data-productId'),
             productCart = $('.cart').find('.product[data-productId=' + productId + ']'),
-            textarea = productCart.find('.add-product-description textarea');
+            textarea = productCart.find('.add-product-description textarea'),
+            message = btnSave ? textarea.val() : null;
 
-        if ($(this).hasClass('save')) {
-            var message = textarea.val();
-        } else {
-            var message = null;
-
+        if (!btnSave) {
             textarea.val('');
         }
+
+        btn.text(btnSave ? 'Salvando' : 'Apagando').prop('disabled', true);
 
         $.ajax({
             url: '/carrinho/produto/mensagem',
@@ -144,9 +145,17 @@ $(function() {
                 message: message
             },
             success: function(data) {
-                productCart.find('.open-description').trigger('click');
+                const btnOpen = productCart.find('.open-description');
+
+                btnOpen.trigger('click');
+
+                btn.text(btnSave ? 'Salvar' : 'Apagar').prop('disabled', false);
+
+                btnSave && message ? btnOpen.addClass('fill') : btnOpen.removeClass('fill');
             },
             error: function (request, status, error) {
+                btn.text(btnSave ? 'Salvar' : 'Apagar').prop('disabled', false);
+
                 modalAlert(defaultErrorMessage());
             }
         });
@@ -159,7 +168,7 @@ $(function() {
     });
 
     if ($('.page-cart-finish').length) {
-        const unavailableDates = $('input[name=unavailable_dates').val().split(';');
+        var unavailableDates = $('input[name=unavailable_dates').val().split(';');
     }
 
     $("#datepicker").datepicker({
@@ -227,6 +236,10 @@ $(function() {
                 minlength: 1
             },
             delivery_hour: {
+                required: true,
+                minlength: 1
+            },
+            products_missing: {
                 required: true,
                 minlength: 1
             },
@@ -379,8 +392,8 @@ function previewAndValidate(element = null) {
                 deliveryHour = $('input[name=delivery_hour]:checked').next().text();
             var preview = deliveryDate + ' - ' + weekDay + ' - ' + deliveryHour;
         } else if (section.hasClass('instructions')) {
-            const instructions = $('textarea[name=instructions]').val();
-            var preview = instructions ? instructions : 'Sem instruções para o entregador';
+            const productsMissing = $('input[name=products_missing]:checked').val();
+            var preview = productsMissing == 'Substituir pelo mais similar' ? 'Substituir itens em falta pelo mais similar em preço e qualidade' : 'Retirar itens em falta da lista';
         } else if (section.hasClass('payment')) {
             const paymentType = $('input[name=payment_type]:checked');
             var preview = paymentType.next().text();

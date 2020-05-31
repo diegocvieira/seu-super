@@ -1,17 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Nosuper;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Market;
+use App\Models\District;
+use App\Models\Payment;
 use Illuminate\Support\Str;
 
 class MarketController extends Controller
 {
+    public function index()
+    {
+        $markets = Market::orderBy('name', 'ASC')->get();
+
+        return view('admin.nosuper.market.index', compact('markets'));
+    }
+
     public function create()
     {
-        return view('admin.market.create-edit');
+        $districts = District::orderBy('name', 'ASC')->get();
+        $payments = Payment::orderBy('name', 'ASC')->get();
+
+        return view('admin.nosuper.market.create-edit', compact('payments', 'districts'));
     }
 
     public function store(Request $request)
@@ -45,6 +57,10 @@ class MarketController extends Controller
                 ]);
             }
         }
+
+        session()->flash('session_flash', 'Supermercado cadastrado!');
+
+        return redirect()->route('nosuper.market.index');
     }
 
     public function edit($id)
@@ -57,7 +73,10 @@ class MarketController extends Controller
             $market_payments[] = $payment->id;
         }
 
-        return view('admin.market.create-edit', compact('market', 'market_payments'));
+        $districts = District::orderBy('name', 'ASC')->get();
+        $payments = Payment::orderBy('name', 'ASC')->get();
+
+        return view('admin.nosuper.market.create-edit', compact('market', 'market_payments', 'districts', 'payments'));
     }
 
     public function update(Request $request, $id)
@@ -110,5 +129,18 @@ class MarketController extends Controller
                 'cover_image_mobile' => _saveImageFolder($request->cover_image_mobile, 'markets')
             ]);
         }
+
+        session()->flash('session_flash', 'Supermercado atualizado!');
+
+        return redirect()->route('nosuper.market.index');
+    }
+
+    public function delete($id)
+    {
+        Market::findOrFail($id)->delete();
+
+        session()->flash('session_flash', 'Supermercado deletado!');
+
+        return redirect()->route('nosuper.market.index');
     }
 }

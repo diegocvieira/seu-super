@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'nosuper' => [
+            'driver' => 'session',
+            'provider' => 'nosupers',
+        ],
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'nosupers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Nosuper::class,
         ],
 
         // 'users' => [

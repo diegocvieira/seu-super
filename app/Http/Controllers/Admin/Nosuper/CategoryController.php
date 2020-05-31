@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Nosuper;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,20 +10,33 @@ use Str;
 
 class CategoryController extends Controller
 {
+    public function index()
+    {
+        $categories = Category::with('department')
+            ->orderBy('name', 'ASC')
+            ->get();
+
+        return view('admin.nosuper.category.index', compact('categories'));
+    }
+
     public function create()
     {
         $departments = Department::orderBy('name', 'ASC')->get();
 
-        return view('admin.category.create-edit', compact('departments'));
+        return view('admin.nosuper.category.create-edit', compact('departments'));
     }
 
     public function store(Request $request)
     {
-        $category = Category::create([
+        Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-'),
             'department_id' => $request->department
         ]);
+
+        session()->flash('session_flash', 'Categoria cadastrada!');
+
+        return redirect()->route('nosuper.category.index');
     }
 
     public function edit($id)
@@ -31,7 +44,7 @@ class CategoryController extends Controller
         $departments = Department::orderBy('name', 'ASC')->get();
         $category = Category::findOrFail($id);
 
-        return view('admin.category.create-edit', compact('category', 'departments'));
+        return view('admin.nosuper.category.create-edit', compact('category', 'departments'));
     }
 
     public function update(Request $request, $id)
@@ -43,5 +56,18 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name, '-'),
             'department_id' => $request->department
         ]);
+
+        session()->flash('session_flash', 'Categoria atualizada!');
+
+        return redirect()->route('nosuper.category.index');
+    }
+
+    public function delete($id)
+    {
+        Category::findOrFail($id)->delete();
+
+        session()->flash('session_flash', 'Categoria deletada!');
+
+        return redirect()->route('nosuper.category.index');
     }
 }

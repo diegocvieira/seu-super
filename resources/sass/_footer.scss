@@ -200,4 +200,76 @@ footer {
             }
         }
     }
+
+    .modal-payment .modal-card {
+        width: 700px;
+
+        .modal-card-body {
+            .payment-type {
+                display: block;
+                font-size: 16.6px;
+                color: rgb(50, 50, 50);
+                font-weight: 700;
+                margin-top: 15px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+
+            .payment-name {
+                font-size: 14.5px;
+                color: rgb(100, 100, 100);
+                width: 33.33%;
+                display: inline-block;
+                margin-right: -4px;
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    border-radius: 50%;
+                    background-color: #000;
+                    width: 6px;
+                    height: 6px;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+    .modal-freight .modal-card {
+        width: 1200px;
+
+        .modal-card-body {
+            .freight {
+                width: 33.33%;
+                display: inline-block;
+                margin-right: -4px;
+
+                &:nth-child(3n) .freight-price {
+                    padding-right: 0;
+                }
+
+                &:nth-child(3n), &:nth-child(3n+2) {
+                    .freight-name {
+                        padding-left: 30px;
+                    }
+                }
+
+                .freight-name {
+                    font-size: 14.5px;
+                    color: rgb(50, 50, 50);
+                }
+
+                .freight-price {
+                    float: right;
+                    padding-right: 30px;
+                    font-size: 14.5px;
+                    color: rgb(50, 50, 50);
+                    font-weight: 700;
+                }
+            }
+        }
+    }
 }

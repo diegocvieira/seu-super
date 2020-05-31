@@ -4,10 +4,10 @@
     <div class="page">
         <div class="container">
             @if (isset($department))
-            <form method="POST" action="{{ route('department-update', $department->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('nosuper.department.update', $department->id) }}" enctype="multipart/form-data">
                 @method('PUT')
             @else
-            <form method="POST" action="{{ route('department-store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('nosuper.department.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
 

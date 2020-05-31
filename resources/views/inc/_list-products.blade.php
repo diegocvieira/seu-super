@@ -32,27 +32,11 @@
             @endforeach
         </div>
 
-        @if ($products->lastPage() > 1)
-            <div class="columns">
-                <div class="column is-12">
-                    <div class="pagination">
-                        @if ($products->currentPage() > 1)
-                            <a class="pagination-previous" href="{{ $products->appends(request()->query())->previousPageUrl() }}"></a>
-                        @else
-                            <a class="pagination-previous" disabled></a>
-                        @endif
-
-                        <span class="page-number">Página {{ $products->currentPage() }}</span>
-
-                        @if ($products->currentPage() < $products->lastPage())
-                            <a class="pagination-next" href="{{ $products->appends(request()->query())->nextPageUrl() }}"></a>
-                        @else
-                            <a class="pagination-next" disabled></a>
-                        @endif
-                    </div>
-                </div>
+        <div class="columns">
+            <div class="column is-12">
+                @include('inc._pagination', ['results' => $products])
             </div>
-        @endif
+        </div>
     @else
         <div class="no-results">
             <img src="{{ asset('images/no-results.jpg') }}" alt="Nenhum produto encontrado">

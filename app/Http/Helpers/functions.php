@@ -8,7 +8,7 @@ function _saveImageFolder($image, $folderName, $imageName = null)
 
     $image->storeAs($folderPath, $imageName, 'public');
 
-    return $date . '/' . $imageName;
+    return ($folderName == 'products/others' ? 'others/' : '') . $date . '/' . $imageName;
 }
 
 function _formatDateToDB($date)
@@ -59,6 +59,11 @@ function _formatCep($value)
 function _removeNonNumericCharacters($string)
 {
     return preg_replace('/[^0-9]/', '', $string);
+}
+
+function _getFirstWord($string)
+{
+    return strtok($string, ' ');
 }
 
 function _defaultErrorMessage()

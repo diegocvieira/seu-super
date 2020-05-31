@@ -141,6 +141,10 @@
                 background-repeat: no-repeat;
                 border: none;
                 cursor: pointer;
+
+                &.fill {
+                    background-image: url('../images/icon-message2.png');
+                }
             }
 
             .add-product-description {

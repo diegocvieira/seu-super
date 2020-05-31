@@ -4,10 +4,10 @@
     <div class="page">
         <div class="container">
             @if (isset($market))
-            <form method="POST" action="{{ route('market-update', $market->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('nosuper.market.update', $market->id) }}" enctype="multipart/form-data">
                 @method('PUT')
             @else
-            <form method="POST" action="{{ route('market-store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('nosuper.market.store') }}" enctype="multipart/form-data">
             @endif
                 @csrf
 
@@ -42,7 +42,7 @@
                 <div class="field">
                     <label for="cep" class="label">CEP</label>
                     <div class="control">
-                        <input type="text" name="cep" value="{{ isset($market) ? $market->cep : null }}" id="cep" class="input" required>
+                        <input type="text" name="cep" value="{{ isset($market) ? $market->cep : null }}" id="cep" class="input mask-cep" required>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                 <div class="field">
                     <label for="free_shipping_from" class="label">Frete grátis a partir de</label>
                     <div class="control">
-                        <input type="text" name="free_shipping_from" value="{{ isset($market) ? _formatDolarToReal($market->free_shipping_from) : null }}" id="free_shipping_from" class="input">
+                        <input type="text" name="free_shipping_from" value="{{ isset($market) ? $market->free_shipping_from : null }}" id="free_shipping_from" class="input mask-money">
                     </div>
                 </div>
 
@@ -114,13 +114,13 @@
                                 @endphp
 
                                 @if ($freight->id == $district->id)
-                                    <input type="text" name="freight_price[{{ $key }}]" value="{{ _formatDolarToReal($freight->pivot->price) }}">
+                                    <input type="text" name="freight_price[{{ $key }}]" value="{{ $freight->pivot->price }}" class="mask-money">
                                 @endif
                             @endforeach
                         @endif
 
                         @if (!isset($market_freights) || !in_array($district->id, $market_freights))
-                            <input type="text" name="freight_price[{{ $key }}]">
+                            <input type="text" name="freight_price[{{ $key }}]" class="mask-money">
                         @endif
 
                         <label>{{ $district->name }}</label>

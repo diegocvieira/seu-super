@@ -1,5 +1,6 @@
 @php
     $hide_btn_finish = true;
+    $hideHeaderMenu = true;
 @endphp
 
 @extends ('app')
@@ -21,7 +22,7 @@
                             <div class="section">
                                 <button type="submit" class="btn-submit" disabled autocomplete="off">Finalizar pedido</button>
 
-                                <p>Preencha todos os dados para a entrega</p>
+                                <p class="text-top">Preencha todos os dados para a entrega</p>
                             </div>
 
                             <div class="section price">
@@ -53,7 +54,7 @@
                             </div>
 
                             <div class="section line">
-                                <p>
+                                <p class="text-bottom">
                                     Ao fazer o pedido você confirma que leu e concorda com os termos de uso, as políticas de privacidade e as regras de uso.
                                 </p>
                             </div>
@@ -283,7 +284,7 @@
                             <section class="section instructions">
                                 <div class="header-section">
                                     <div class="content">
-                                        <h3 class="section-title">Instruções ao entregador</h3>
+                                        <h3 class="section-title">Instruções</h3>
                                         <p class="preview"></p>
                                     </div>
                                 </div>
@@ -294,7 +295,19 @@
 
                                         <div class="group">
                                             <div class="field">
-                                                <label for="instructions" class="label">Deixe uma instrução para o seu entregador</label>
+                                                <label for="" class="label">O que fazer se algum item estiver em falta?</label>
+
+                                                <div class="control">
+                                                    <input type="radio" name="products_missing" value="Substituir pelo mais similar" id="products_missing1" class="is-hidden radio-field form-field" autocomplete="off">
+                                                    <label for="products_missing1" class="radio-label">Substituir pelo mais similar</label>
+
+                                                    <input type="radio" name="products_missing" value="Retirar o item da lista" id="products_missing2" class="is-hidden radio-field form-field" autocomplete="off">
+                                                    <label for="products_missing2" class="radio-label">Retirar o item da lista</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="field">
+                                                <label for="instructions" class="label">Instrução para o entregador</label>
 
                                                 <div class="control">
                                                     <textarea name="instructions" id="instructions" placeholder="Por favor, deixe as compras na portaria do prédio... (opcional)" class="form-field" autocomplete="off"></textarea>
@@ -322,7 +335,7 @@
                                                 <label class="label">Selecione a forma de pagamento</label>
 
                                                 <div class="control">
-                                                    <input type="radio" name="payment_money" value="{{ $market->payments->where('type', 1)->first()->id }}" id="payment-money" class="form-field is-hidden" autocomplete="off" />
+                                                    <input type="radio" name="payment_money" value="{{ $market->payments->where('type', 1)->first()->name }}" id="payment-money" class="form-field is-hidden" autocomplete="off" />
 
                                                     @foreach ($market->payments as $payment)
                                                         @if (!isset($type) || isset($type) && $type != $payment->type)

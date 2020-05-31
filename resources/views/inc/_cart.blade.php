@@ -36,7 +36,7 @@
                         <button type="button" class="add">+</button>
                     </div>
 
-                    <button type="button" class="open-description"></button>
+                    <button type="button" class="open-description {{ $product->message ? 'fill' : '' }}"></button>
                     <div class="add-product-description">
                         <textarea placeholder="Deixe uma instrução para este item">{{ $product->message }}</textarea>
                         <button type="button" class="remove">Apagar</button>

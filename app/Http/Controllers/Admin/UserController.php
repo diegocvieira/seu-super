@@ -166,6 +166,7 @@ class UserController extends Controller
     {
         $orders = Order::with('market')
             ->where('user_id', Auth::user()->id)
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         $navigation = 'orders';
